@@ -18,13 +18,7 @@ return new class extends Migration
                 ->on('broadcasting.chatrooms')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->foreignUuid('user_a')
-                ->nullable()
-                ->references('id')
-                ->on('users')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->foreignUuid('user_b')
+            $table->foreignUuid('user_id')
                 ->nullable()
                 ->references('id')
                 ->on('users')

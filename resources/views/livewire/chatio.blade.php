@@ -6,7 +6,7 @@
         <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
           
           <div class="d-flex gap-3">
-            <h5 class="font-weight-bold mb-3 text-center text-lg-start">Member</h5>
+            <h5 class="font-weight-bold mb-3 text-center text-lg-start">{{ $logged_user }}</h5>
             <form action="{{ route('auth.logout') }}" method="POST">
               @csrf
               <button type="submit" class="btn btn-danger btn-sm mb-3">
@@ -14,25 +14,31 @@
               </button>
             </form>
           </div>
-  
           <div class="card">
             <div class="card-body">
-  
+              <form action="">
+                <select wire:model="selectedItem" wire:change="getSelectedItems" id="selectedItem" class="form-control" name="selectedItem">
+                  <option value="" selected hidden>Start Conversation</option>
+                  @foreach($users as $user)
+                  <option value="{{ $user->id }}">{{ $user->name }}</option>
+                  @endforeach
+                </select>
+              </form>
               <ul class="list-unstyled mb-0">
-                @foreach($users as $user)
-                <li class="p-2 border-bottom" style="background-color: #eee;">
+                @foreach($user_on_chatroom as $user)
+                <li class="p-2 border-bottom" >
                   <a href="#!" class="d-flex justify-content-between">
                     <div class="d-flex flex-row">
                       <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-8.webp" alt="avatar"
                         class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
                       <div class="pt-1">
                         <p class="fw-bold mb-0">{{ $user->name }}</p>
-                        <p class="small text-muted">Hello, Are you there?</p>
+                        <p class="small text-muted">...</p>
                       </div>
                     </div>
                     <div class="pt-1">
                       <p class="small text-muted mb-1">Just now</p>
-                      <span class="badge bg-danger float-end">1</span>
+                      {{-- <span class="badge bg-danger float-end">1</span> --}}
                     </div>
                   </a>
                 </li>
@@ -47,6 +53,7 @@
         <div class="col-md-6 col-lg-7 col-xl-8">
   
           <ul class="list-unstyled">
+            
             <li class="d-flex justify-content-between mb-4">
               <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar"
                 class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
@@ -95,6 +102,7 @@
                 </div>
               </div>
             </li>
+
             <li class="bg-white mb-3">
               <div class="form-outline">
                 <textarea class="form-control" id="textAreaExample2" rows="4"></textarea>

@@ -41,6 +41,13 @@ class User extends Authenticatable
     protected $guarded = [];
 
     /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = [];
+
+    /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>

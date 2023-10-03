@@ -36,4 +36,27 @@ class Chatroom extends Model
      * @var array<int, string>
      */
     protected $guarded = [];
+
+    /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = ['fromUser', 'toUser'];
+
+    /**
+     * from user relation,
+     */
+    public function fromUser()
+    {
+        return $this->belongsTo(User::class, 'from_user', 'id');
+    }
+
+    /**
+     * to user relation,
+     */
+    public function toUser()
+    {
+        return $this->belongsTo(User::class, 'to_user', 'id');
+    }
 }

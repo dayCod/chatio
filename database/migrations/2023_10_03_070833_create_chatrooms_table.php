@@ -13,23 +13,27 @@ return new class extends Migration
     {
         Schema::create('broadcasting.chatrooms', function (Blueprint $table) {
             $table->uuid('id')->default(DB::raw('uuid_generate_v4()'))->primary();
-            $table->foreignUuid('user_a')
+            $table->foreignUuid('last_user_in_chatroom')
+                ->nullable()
                 ->references('id')
                 ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->foreignUuid('user_b')
+            $table->foreignUuid('from_user')
+                ->nullable()
                 ->references('id')
                 ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->foreignUuid('last_text_from_users')
+            $table->foreignUuid('to_user')
+                ->nullable()
                 ->references('id')
                 ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->string('last_message');
+            $table->string('last_message')->nullable();
             $table->boolean('is_read')->default(false);
+            $table->boolean('is_request')->default(true);
             $table->timestamps();
         });
     }
