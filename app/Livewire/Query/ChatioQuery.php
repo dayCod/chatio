@@ -55,6 +55,6 @@ class ChatioQuery
      */
     public static function getListOfUserFromChatroom()
     {
-        return Chatroom::where('from_user', Auth::user()->id)->get()->pluck('toUser');
+        return Chatroom::where('from_user', Auth::user()->id)->orderBy('created_at', 'DESC')->get()->pluck('toUser');
     }
 }
