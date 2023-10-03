@@ -21,14 +21,15 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title mb-3">Chatio Login</h5>
-              <form action="">
+              <form action="{{ route('auth.authenticate') }}" method="POST">
+                @csrf
                 <div class="mb-3">
                   <label class="form-label">Email address</label>
-                  <input type="email" class="form-control" placeholder="name@example.com" required>
+                  <input name="email" type="email" class="form-control" placeholder="name@example.com" required>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Password</label>
-                  <input type="password" class="form-control" placeholder="********" required>
+                  <input name="password" type="password" class="form-control" placeholder="********" required>
                 </div>
                 <div class="mb-3">
                   <div class="d-grid">

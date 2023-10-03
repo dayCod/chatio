@@ -4,8 +4,16 @@
       <div class="row">
   
         <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
-  
-          <h5 class="font-weight-bold mb-3 text-center text-lg-start">Member</h5>
+          
+          <div class="d-flex gap-3">
+            <h5 class="font-weight-bold mb-3 text-center text-lg-start">Member</h5>
+            <form action="{{ route('auth.logout') }}" method="POST">
+              @csrf
+              <button type="submit" class="btn btn-danger btn-sm mb-3">
+                Logout
+              </button>
+            </form>
+          </div>
   
           <div class="card">
             <div class="card-body">
